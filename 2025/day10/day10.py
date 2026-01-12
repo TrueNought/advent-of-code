@@ -8,8 +8,9 @@ def part_one(input):
     result = 0
 
     for line in input:
-        _, *tuples, _ = line.split()
-        _ = [True if x == '#' else False for x in _.strip('[]')]
+        goal, *tuples, _ = line.split()
+        goal = [True if x == '#' else False for x in goal.strip('[]')]
+        
         buttons = []
         for t in tuples:
             inner = t.strip('()')
@@ -17,7 +18,7 @@ def part_one(input):
 
         def backtrack(i, state):
             if i == len(buttons):
-                if state == _:
+                if state == goal:
                     return 0
                 return float('inf')
 
@@ -31,10 +32,9 @@ def part_one(input):
 
             return best
         
-        result += backtrack(0, [False] * len(_))
+        result += backtrack(0, [False] * len(goal))
     
     return result
-
 
 
 def part_two(input):
@@ -74,4 +74,4 @@ def part_two(input):
     return result
 
 print('part1', part_one(input))
-print('part2', part_two(input))
+# print('part2', part_two(input))
